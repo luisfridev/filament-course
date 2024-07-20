@@ -41,6 +41,7 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('price')
                     ->sortable(),
             ])
+            ->defaultSort('price', 'desc')
             ->filters([
                 //
             ])
