@@ -27,7 +27,8 @@ class ProductResource extends Resource
                     ->required()
                     ->unique(ignoreRecord: true),
                 Forms\Components\TextInput::make('price')
-                    ->required(),
+                    ->required()
+                    ->rule('numeric'),
             ]);
     }
 
