@@ -15,7 +15,7 @@ class CreateProduct extends CreateRecord
         return $this->getResource()::getUrl('index');
     }
 
-    function mutateFormDataBeforeCreate(array $data): array
+    protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['price'] = $data['price'] * 100;
 
