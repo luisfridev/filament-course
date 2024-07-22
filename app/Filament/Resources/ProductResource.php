@@ -35,6 +35,8 @@ class ProductResource extends Resource
                         'sold out' => 'sold out',
                         'coming soon' => 'coming soon',
                     ]),
+                Forms\Components\Select::make('category_id')
+                    ->relationship('category', 'name'),
             ]);
     }
 
