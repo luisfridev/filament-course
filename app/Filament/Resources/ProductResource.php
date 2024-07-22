@@ -45,6 +45,7 @@ class ProductResource extends Resource
                     ->getStateUsing(function (Product $record): float {
                         return $record->price / 100;
                     }),
+                Tables\Columns\TextColumn::make('status'),
             ])
             ->defaultSort('price', 'desc')
             ->filters([
