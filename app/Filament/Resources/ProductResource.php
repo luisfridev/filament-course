@@ -54,6 +54,7 @@ class ProductResource extends Resource
                         return $record->price / 100;
                     }),
                 Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('category.name'),
             ])
             ->defaultSort('price', 'desc')
             ->filters([
