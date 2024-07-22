@@ -29,6 +29,12 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->rule('numeric'),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'in stock' => 'in stock',
+                        'sold out' => 'sold out',
+                        'coming soon' => 'coming soon',
+                    ]),
             ]);
     }
 
