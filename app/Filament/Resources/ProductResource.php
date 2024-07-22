@@ -37,6 +37,9 @@ class ProductResource extends Resource
                     ]),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name'),
+                Forms\Components\Select::make('tags')
+                    ->relationship('tags', 'name')
+                    ->multiple(),
             ]);
     }
 
