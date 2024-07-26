@@ -19,6 +19,12 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    private static ?array $statuses = [
+        'in stock' => 'in stock',
+        'sold out' => 'sold out',
+        'coming soon' => 'coming soon',
+    ];
+
     public static function form(Form $form): Form
     {
         return $form
@@ -30,11 +36,7 @@ class ProductResource extends Resource
                     ->required()
                     ->rule('numeric'),
                 Forms\Components\Select::make('status')
-                    ->options([
-                        'in stock' => 'in stock',
-                        'sold out' => 'sold out',
-                        'coming soon' => 'coming soon',
-                    ]),
+                    ->options(self::$statuses),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name'),
                 Forms\Components\Select::make('tags')
@@ -62,11 +64,7 @@ class ProductResource extends Resource
             ->defaultSort('price', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
-                    ->options([
-                        'in stock' => 'in stock',
-                        'sold out' => 'sold out',
-                        'coming soon' => 'coming soon',
-                    ])
+                    ->options(self::$statuses)
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
