@@ -64,7 +64,9 @@ class ProductResource extends Resource
             ->defaultSort('price', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
-                    ->options(self::$statuses)
+                    ->options(self::$statuses),
+                Tables\Filters\SelectFilter::make('category')
+                    ->relationship('category', 'name')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
