@@ -59,7 +59,12 @@ class ProductResource extends Resource
                         return $record->price / 100;
                     }),
                 Tables\Columns\TextColumn::make('status')
-                    ->badge(),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'in stock' => 'primary',
+                        'sold out' => 'danger',
+                        'coming soon' => 'info',
+                    }),
                 Tables\Columns\TextColumn::make('category.name'),
                 Tables\Columns\TextColumn::make('tags.name')
                     ->badge()
