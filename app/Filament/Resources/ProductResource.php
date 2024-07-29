@@ -65,7 +65,8 @@ class ProductResource extends Resource
                         'sold out' => 'danger',
                         'coming soon' => 'info',
                     }),
-                Tables\Columns\TextColumn::make('category.name'),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Category Name'),
                 Tables\Columns\TextColumn::make('tags.name')
                     ->badge()
             ])
