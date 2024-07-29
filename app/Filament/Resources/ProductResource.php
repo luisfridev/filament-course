@@ -69,7 +69,9 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category Name'),
                 Tables\Columns\TextColumn::make('tags.name')
-                    ->badge()
+                    ->badge(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->date()
             ])
             ->defaultSort('price', 'desc')
             ->filters([
