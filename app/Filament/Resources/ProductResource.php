@@ -59,6 +59,7 @@ class ProductResource extends Resource
                         return $record->price / 100;
                     })
                     ->alignEnd(),
+                Tables\Columns\CheckboxColumn::make('is_active'),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
