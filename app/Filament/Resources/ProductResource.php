@@ -64,10 +64,27 @@ class ProductResource extends Resource
             ->defaultSort('price', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
-                    ->options(self::$statuses),
-                Tables\Filters\SelectFilter::make('category')
-                    ->relationship('category', 'name')
-            ])
+                    ->options(self::$statuses), // <-- Status Filter
+                Tables\Filters\SelectFilter::make('category') // <-- Category filter
+                    ->relationship('category', 'name'),
+                Tables\Filters\Filter::make('created_at') // Date filter using "created_at" column
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from'),
+                        Forms\Components\DatePicker::make('created_until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
+            ], layout: Tables\Enums\FiltersLayout::AboveContent)
+                ->filtersFormColumns(4)
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
