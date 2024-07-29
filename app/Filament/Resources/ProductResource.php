@@ -60,13 +60,8 @@ class ProductResource extends Resource
                     })
                     ->alignEnd(),
                 Tables\Columns\CheckboxColumn::make('is_active'),
-                Tables\Columns\TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'in stock' => 'primary',
-                        'sold out' => 'danger',
-                        'coming soon' => 'info',
-                    }),
+                Tables\Columns\SelectColumn::make('status')
+                    ->options(self::$statuses),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category Name'),
                 Tables\Columns\TextColumn::make('tags.name')
