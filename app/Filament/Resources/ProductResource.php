@@ -57,7 +57,8 @@ class ProductResource extends Resource
                     ->money('usd')
                     ->getStateUsing(function (Product $record): float {
                         return $record->price / 100;
-                    }),
+                    })
+                    ->alignEnd(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
